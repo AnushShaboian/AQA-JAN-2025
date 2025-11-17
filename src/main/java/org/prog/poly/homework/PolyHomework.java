@@ -8,13 +8,15 @@ package org.prog.poly.homework;
 public class PolyHomework {
 
     public static void main(String[] args) {
-        //TODO: create Android and IOS phones, and call usePhone() for both
+        Android android = new Android();
+        IOS ios = new IOS();
+
+       usePhone(android);
+       usePhone(ios);
     }
 
-    public static void usePhone(
-            //IPhone iPhone
-    ) {
-        //iPhone.unlock();
-        //iPhone.call();
+    public static void usePhone(IPhone iPhone) {
+        iPhone.call();
+        iPhone.unlock();
     }
 }
