@@ -2,10 +2,7 @@ package org.prog.collections;
 
 import org.prog.parent.Car;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 // 1. bind one person to a single car
 // 2. bind one person to multiple cars
@@ -25,23 +22,33 @@ public class MapsPractice {
         ownedCars.put(driver2, new ArrayList<>());
         ownedCars.put(driver3, new ArrayList<>());
 
-        ownedCars.get(driver1).add(new Car("Red"));
-        ownedCars.get(driver1).add(new Car("Blue"));
-        ownedCars.get(driver1).add(new Car("Black"));
-        ownedCars.get(driver1).add(new Car("Purple"));
+        Map<String, Set<String>> ownedColors = new HashMap<>();
+        ownedColors.put(driver1, new HashSet<>());
+        ownedColors.put(driver2, new HashSet<>());
+        ownedColors.put(driver3, new HashSet<>());
 
-        ownedCars.get(driver2).add(new Car("Blue"));
-        ownedCars.get(driver2).add(new Car("Yellow"));
+        addCar(driver1, new Car("Red"), ownedCars, ownedColors);
+        addCar(driver1, new Car("Blue"), ownedCars, ownedColors);
+        addCar(driver1, new Car("Black"), ownedCars, ownedColors);
+        addCar(driver1, new Car("Purple"), ownedCars, ownedColors);
+        addCar(driver1, new Car("Red"), ownedCars, ownedColors);
 
-        ownedCars.get(driver3).add(new Car("White"));
+        addCar(driver2, new Car("Blue"), ownedCars, ownedColors);
+        addCar(driver2, new Car("Yellow"), ownedCars, ownedColors);
 
-        countCarsForDriver(driver1, ownedCars);
-        countCarsForDriver(driver2, ownedCars);
-        countCarsForDriver(driver3, ownedCars);
+        addCar(driver3, new Car("White"), ownedCars, ownedColors);
     }
+        public static void addCar (String driver, Car car,
+                Map < String, List < Car >> ownedCars,
+                Map < String, Set < String >> ownedColors){
 
-    public static void countCarsForDriver(String driverName, Map<String, List<Car>> cars) {
-        List<Car> carsOfOwner = cars.get(driverName);
-        System.out.println(driverName + " has access to " + carsOfOwner.size() + " cars");
+            String color = car.color;
+
+            if (ownedColors.get(driver).add(color)) {
+                ownedCars.get(driver).add(car);
+            } else {
+                System.out.println("Driver " + driver + " already has a car with color " + color);
+            }
+
+        }
     }
-}
