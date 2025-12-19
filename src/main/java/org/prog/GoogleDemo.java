@@ -24,7 +24,7 @@ public class GoogleDemo {
             if (!cookieLink.isEmpty() && cookieLink.get(0).isDisplayed()) {
                 List<WebElement> buttons = driver.findElements(By.tagName("button"));
                 Thread.sleep(500);
-                buttons.get(4).click();
+                buttons.get(3).click();
             }
             Thread.sleep(500);
             //SEARCH FOR CELEBRITY
