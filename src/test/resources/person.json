@@ -4,10 +4,34 @@
       "gender": "male",
       "name": {
         "title": "Mr",
-        "first": "Đuraš",
-        "last": "Lončarević"
+        "first": "Faraj",
+        "last": "Kouser"
       },
-      "nat": "RS"
+      "location": {
+        "street": {
+          "number": 8789,
+          "name": "Marine Drive"
+        },
+        "city": "Bidhannagar",
+        "state": "Daman and Diu",
+        "country": "India",
+        "postcode": 59071,
+        "coordinates": {
+          "latitude": "6.0107",
+          "longitude": "-175.9390"
+        },
+        "timezone": {
+          "offset": "+10:00",
+          "description": "Eastern Australia, Guam, Vladivostok"
+        }
+      },
+      "nat": "IN"
     }
-  ]
+  ],
+  "info": {
+    "seed": "60c5f48225d927e8",
+    "results": 1,
+    "page": 1,
+    "version": "1.4"
+  }
 }

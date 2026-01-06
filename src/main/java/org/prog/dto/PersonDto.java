@@ -11,4 +11,5 @@ public class PersonDto {
     public String gender;
     public String nat;
     public NameDto name;
+    public LocationDto location;
 }
