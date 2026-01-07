@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 
 public class LocationDto {
     private String city;
+    private StreetDto street;
 }
