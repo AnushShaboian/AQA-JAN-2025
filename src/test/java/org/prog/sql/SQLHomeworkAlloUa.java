@@ -19,50 +19,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SQLHomeworkAlloUa extends DBConnection {
-    private WebDriver driver;
 
-    @BeforeMethod
-    public void setUp(){
-        driver = new ChromeDriver();
-    };
-
-    @AfterMethod
-    public void tearDown(){
-        if (driver != null)
-            driver.quit();
-    }
-
-    public List<PhoneDto> getPhonesInfo() {
+    public List <PhoneDto> getPhonesInfo() {
         driver.get("https://allo.ua/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30L));
 
         WebElement search = wait.until(
                 ExpectedConditions.elementToBeClickable(By.name("search"))
         );
         search.sendKeys("Телефон", Keys.ENTER);
 
-        WebElement phoneName = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("(//div[contains(@class,'product-card')]//a[contains(@class,'product-card__title')])[1]")
+        List<WebElement> productCards = wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(
+                        By.xpath("//div[contains(@class,'products-layout__item')]")
                 )
         );
 
-        WebElement phonePrice = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("(//div[contains(@class,'product-card')]//span[contains(@class,'sum')])[1]")
-                )
-        );
+        List<PhoneDto> phones = new ArrayList<>();
 
-        String nameText = phoneName.getText();
-        String priceText = phonePrice.getText().replaceAll("[^0-9]", "");
-        int finalPrice = Integer.parseInt(priceText);
-        Assert.assertFalse(phoneName.getText().isBlank(), "Phone name is empty");
-        Assert.assertFalse(phonePrice.getText().isBlank(), "Phone price is empty");
+        int phonesCount = Math.min(productCards.size(), 5);
 
-        PhoneDto phoneDto = new PhoneDto(nameText, finalPrice);
-        List<PhoneDto> phoneDtoList = new ArrayList<>();
-        phoneDtoList.add(phoneDto);
-        return phoneDtoList;
+        for (int i = 0; i < phonesCount; i++) {
+            WebElement card = productCards.get(i);
+
+            WebElement nameElement = card.findElement(
+                    By.xpath(".//a[contains(@class,'product-card__title')]")
+            );
+
+            WebElement priceElement = card.findElement(
+                    By.xpath(".//span[contains(@class,'sum')]")
+            );
+
+            String name = nameElement.getText();
+            String priceText = priceElement.getText().replaceAll("[^0-9]", "");
+            int price = Integer.parseInt(priceText);
+
+            Assert.assertFalse(name.isBlank(), "Phone name is empty");
+            Assert.assertTrue(price > 0, "Phone price is invalid");
+
+            phones.add(new PhoneDto(name, price));
+        }
+
+        return phones;
     }
 
     @Test

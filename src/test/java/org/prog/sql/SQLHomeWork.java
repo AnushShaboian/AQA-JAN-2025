@@ -26,18 +26,6 @@ import java.util.List;
 
 public class SQLHomeWork extends DBConnection {
 
-    private List<PersonDto> getPersons(){
-        RequestSpecification requestSpecification = RestAssured.given();
-        requestSpecification.baseUri("https://randomuser.me/");
-        requestSpecification.basePath("api/");
-        requestSpecification.queryParam("noinfo");
-        requestSpecification.queryParam("inc", "name, location");
-        requestSpecification.queryParam("results", "5");
-
-        Response response = requestSpecification.get();
-        return response.as(ResultsDto.class).getResults();
-    }
-
     @Test
     public void sqlWrite() throws SQLException {
         List<PersonDto> personDtos = getPersons();
@@ -63,7 +51,17 @@ public class SQLHomeWork extends DBConnection {
         }
     }
 
+    private List<PersonDto> getPersons(){
+        RequestSpecification requestSpecification = RestAssured.given();
+        requestSpecification.baseUri("https://randomuser.me/");
+        requestSpecification.basePath("api/");
+        requestSpecification.queryParam("noinfo");
+        requestSpecification.queryParam("inc", "name, location");
+        requestSpecification.queryParam("results", "5");
 
+        Response response = requestSpecification.get();
+        return response.as(ResultsDto.class).getResults();
+    }
 
 
 }
