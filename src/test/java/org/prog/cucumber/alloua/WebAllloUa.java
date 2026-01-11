@@ -1,28 +1,31 @@
-package org.prog.sql;
+package org.prog.cucumber.alloua;
 
+import io.cucumber.java.en.Given;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.prog.base.DBConnection;
 import org.prog.dto.PhoneDto;
+import org.openqa.selenium.WebElement;
+import org.prog.util.Container;
 import org.testng.Assert;
-import org.testng.annotations.*;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLHomeworkAlloUa extends DBConnection {
+public class WebAllloUa{
 
-    public List <PhoneDto> getPhonesInfo() {
+    public void requestNewPhone (){
+        PhoneDto phoneDto = new PhoneDto();
+    }
+
+    public static WebDriver driver;
+    @Given("I opened the search results for the query “телефон” on the Allo.ua website")
+    public void getPhonesInfo() {
         driver.get("https://allo.ua/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15L));
 
         WebElement search = wait.until(
                 ExpectedConditions.elementToBeClickable(By.name("search"))
@@ -38,6 +41,7 @@ public class SQLHomeworkAlloUa extends DBConnection {
         List<PhoneDto> phones = new ArrayList<>();
 
         int phonesCount = Math.min(productCards.size(), 5);
+
 
         for (int i = 0; i < phonesCount; i++) {
             WebElement card = productCards.get(i);
@@ -60,6 +64,8 @@ public class SQLHomeworkAlloUa extends DBConnection {
             phones.add(new PhoneDto(name, price));
         }
 
-        return phones;
+        Container.DATA_HOLDER.put("phones_list", phones);
+
+
     }
-    }
+}
