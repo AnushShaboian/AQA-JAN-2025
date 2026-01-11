@@ -2,8 +2,7 @@
 <suite name="Suite1" verbose="1">
     <test name="SQL Test">
         <classes>
-            <class name="org.prog.sql.SQLHomeWork"/>
-            <class name="org.prog.sql.SQLHomeworkAlloUa"/>
+            <class name="org.prog.cucumber.CucumberRunner"/>
         </classes>
     </test>
 </suite>
