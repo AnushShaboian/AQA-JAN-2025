@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.prog.dto.PhoneDto;
 import org.prog.util.Container;
 
-import java.sql.Connection;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ public class AlloUaPages {
     private final static String URL = "https://allo.ua/";
     private final WebDriver driver;
     private final WebDriverWait wait;
-    public static Connection connection;
 
     private final By SEARCH_INPUT = By.name("search");
     private final By PRODUCT_CARDS = By.xpath("//div[contains(@class,'products-layout__item')]");
