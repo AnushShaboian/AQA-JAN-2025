@@ -19,12 +19,13 @@ public class WebDriverFactory {
                         new URL("http://localhost:4444/wd/hub"), remoteChrome());
             default:
                 return new RemoteWebDriver(
-                        new URL("http://selenoid-selenoid-1:4444/wd/hub"), remoteChrome());
+                        new URL("http://selenoid:4444/wd/hub"), remoteChrome());
         }
     }
 
     private static ChromeOptions remoteChrome() {
         ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setCapability("browserVersion", "latest");
         chromeOptions.setAcceptInsecureCerts(true);
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--disable-notifications");
