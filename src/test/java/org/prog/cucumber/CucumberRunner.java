@@ -3,13 +3,11 @@ package org.prog.cucumber;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.prog.cucumber.alloua.SqlAlloUa;
-import org.prog.cucumber.alloua.WebAllloUa;
-import org.prog.cucumber.steps.SqlSteps;
-import org.prog.cucumber.steps.WebSteps;
+import org.prog.cucumber.alloua.WebAlloUa;
+import org.prog.pages.AlloUaPages;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -29,11 +27,12 @@ import java.sql.SQLException;
         }
 )
 public class CucumberRunner extends AbstractTestNGCucumberTests {
+    private WebDriver driver;
 
     @BeforeSuite
     public void setUp() throws ClassNotFoundException, SQLException, MalformedURLException {
-        WebAllloUa.driver = getRemoteDriver();
-        WebAllloUa.driver.manage().window().maximize();
+        this.driver = getRemoteDriver();
+        WebAlloUa.alloUaPages = new AlloUaPages(driver);
         Class.forName("com.mysql.cj.jdbc.Driver");
         SqlAlloUa.connection =
                 DriverManager.getConnection("jdbc:mysql://mysql-db-1:3306/db", "user", "password");
@@ -42,8 +41,8 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
     @AfterSuite
     public void tearDown() throws SQLException {
         SqlAlloUa.connection.close();
-        if (WebAllloUa.driver != null) {
-            WebAllloUa.driver.quit();
+        if (driver != null) {
+            driver.quit();
         }
     }
 

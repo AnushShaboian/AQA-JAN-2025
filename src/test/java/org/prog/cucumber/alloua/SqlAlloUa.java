@@ -8,8 +8,6 @@ import org.prog.util.Container;
 import java.sql.*;
 import java.util.List;
 
-import static org.prog.cucumber.steps.SqlSteps.connection;
-
 public class SqlAlloUa{
     public static Connection connection;
 
