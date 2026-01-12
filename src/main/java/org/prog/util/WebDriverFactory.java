@@ -19,7 +19,7 @@ public class WebDriverFactory {
                         new URL("http://localhost:4444/wd/hub"), remoteChrome());
             default:
                 return new RemoteWebDriver(
-                        new URL("http://selenoid:4444/wd/hub"), remoteChrome());
+                        new URL("http://selenoid-іудутщшв-1:4444/wd/hub"), remoteChrome());
         }
     }
 
