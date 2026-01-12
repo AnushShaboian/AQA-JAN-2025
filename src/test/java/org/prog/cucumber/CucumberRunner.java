@@ -20,8 +20,7 @@ import java.sql.SQLException;
         tags = "@allo",
         plugin = {"pretty",
                 "json:target/cucumber-reports/Cucumber.json",
-                "html:target/cucumber-report.html",
-                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+                "html:target/cucumber-report.html"
         }
 )
 public class CucumberRunner extends AbstractTestNGCucumberTests {
@@ -29,7 +28,7 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite
     public void setUp() throws ClassNotFoundException, SQLException, MalformedURLException {
-        String envType = System.getProperty("envType", "jenkins");
+        String envType = System.getProperty("envType", "local-selenoid");
         this.driver = WebDriverFactory.getDriver(envType);
         WebAlloUa.alloUaPages = new AlloUaPages(driver);
         Class.forName("com.mysql.cj.jdbc.Driver");
