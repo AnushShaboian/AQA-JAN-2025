@@ -28,7 +28,7 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite
     public void setUp() throws ClassNotFoundException, SQLException, MalformedURLException {
-        String envType = System.getProperty("envType", "local-selenoid");
+        String envType = System.getProperty("envType", "jenkins");
         this.driver = WebDriverFactory.getDriver(envType);
         WebAlloUa.alloUaPages = new AlloUaPages(driver);
         Class.forName("com.mysql.cj.jdbc.Driver");

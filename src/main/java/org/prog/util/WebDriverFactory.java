@@ -30,6 +30,7 @@ public class WebDriverFactory {
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.addArguments("--start-maximized");
+        chromeOptions.addArguments("--headless=new");
         chromeOptions.setCapability("selenoid:options", new HashMap<String, Object>() {{
             put("enableVideo", true);
             put("enableVNC", true);
