@@ -25,7 +25,7 @@ public class WebDriverFactory {
 
     private static ChromeOptions remoteChrome() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setCapability("browserVersion", "latest");
+      //  chromeOptions.setCapability("browserVersion", "latest");
         chromeOptions.setAcceptInsecureCerts(true);
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--disable-notifications");
