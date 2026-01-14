@@ -32,6 +32,7 @@ public class WebDriverFactory {
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--headless=new");
         chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--window-size=1920,1080");
         chromeOptions.setCapability("selenoid:options", new HashMap<String, Object>() {{
             put("enableVideo", true);
             put("enableVNC", true);
