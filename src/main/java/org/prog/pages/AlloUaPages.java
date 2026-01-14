@@ -29,7 +29,9 @@ public class AlloUaPages {
     }
 
     public void loadSite(){
+
         driver.get(URL);
+        System.out.println("Page source: " + driver.getPageSource());
     }
 
     public void openPhonesPage(){
