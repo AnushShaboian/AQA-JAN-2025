@@ -37,7 +37,7 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
                     DriverManager.getConnection("jdbc:mysql://mysql-db-1:3306/db", "user", "password");
         } else {
             SqlAlloUa.connection =
-                    DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "user", "password");
+                    DriverManager.getConnection("jdbc:mysql://selenium-hub/db", "user", "password");
         }
     }
 
