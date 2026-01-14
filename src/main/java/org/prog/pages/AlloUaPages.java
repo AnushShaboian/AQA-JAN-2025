@@ -32,6 +32,8 @@ public class AlloUaPages {
 
         driver.get(URL);
         System.out.println("Page source: " + driver.getPageSource());
+        System.out.println("DEBUG: Currently URL: " + driver.getCurrentUrl());
+        System.out.println("DEBUG: Page header: " + driver.getTitle());
     }
 
     public void openPhonesPage(){
