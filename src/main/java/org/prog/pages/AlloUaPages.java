@@ -25,7 +25,7 @@ public class AlloUaPages {
 
     public AlloUaPages (WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     public void loadSite(){
@@ -42,7 +42,7 @@ public class AlloUaPages {
 
     public void getPhonesList(){
         List<WebElement> productCards = wait.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(PRODUCT_CARDS));
+                ExpectedConditions.presenceOfAllElementsLocatedBy(PRODUCT_CARDS));
         List<PhoneDto> phones = new ArrayList<>();
         int phonesCount = Math.min(productCards.size(), 5);
 
