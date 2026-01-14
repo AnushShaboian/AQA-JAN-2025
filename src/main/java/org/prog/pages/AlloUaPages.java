@@ -18,7 +18,7 @@ public class AlloUaPages {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
-    private final By SEARCH_INPUT = By.name("search");
+    private final By SEARCH_INPUT = By.cssSelector("input#search-form__input");
     private final By PRODUCT_CARDS = By.xpath("//div[contains(@class,'products-layout__item')]");
     private final By PRODUCT_NAME = By.xpath(".//a[contains(@class,'product-card__title')]");
     private final By PRODUCT_PRICE = By.xpath(".//div[contains(@class, 'v-pb')]//span[contains(@class,'sum')]");
@@ -34,7 +34,7 @@ public class AlloUaPages {
 
     public void openPhonesPage(){
         WebElement search = wait.until(
-                ExpectedConditions.elementToBeClickable(SEARCH_INPUT));
+                ExpectedConditions.visibilityOfElementLocated(SEARCH_INPUT));
         search.sendKeys("Телефон", Keys.ENTER);
     }
 
