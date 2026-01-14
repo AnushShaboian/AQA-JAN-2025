@@ -28,7 +28,7 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite
     public void setUp() throws ClassNotFoundException, SQLException, MalformedURLException {
-        String envType = System.getProperty("envType", "jenkins");
+        String envType = System.getProperty("envType", "local");
         this.driver = WebDriverFactory.getDriver(envType);
         WebAlloUa.alloUaPages = new AlloUaPages(driver);
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -37,7 +37,7 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
                     DriverManager.getConnection("jdbc:mysql://mysql-db-1:3306/db", "user", "password");
         } else {
             SqlAlloUa.connection =
-                    DriverManager.getConnection("jdbc:mysql://selenium-hub/db", "user", "password");
+                    DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "user", "password");
         }
     }
 
